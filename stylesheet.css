@@ -1,0 +1,17 @@
+.readMore {
+    display: none;
+    display: inline-flex;
+    float: right;
+    background-color: aliceblue;
+    color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.readMore:active {
+    
+    background-color: red;
+    color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+}
