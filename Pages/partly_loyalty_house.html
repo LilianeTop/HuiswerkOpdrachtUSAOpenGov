@@ -1,3 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!---- below the link to my style sheet-->
+    <link rel="stylesheet" href="./css/stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div id="app">
+      <!---------start nav bar----------------------------------------------------->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
     <img src="" alt="logo USA Open Government"></a>
@@ -7,29 +22,41 @@
         <div class="" id="">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../index.html">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Congress 116</a>
                     <div class="dropdown-menu">
-                    <a class="dropdown-item" href="./pages/congress_116_Senate.html">Senate</a>
-                    <a class="dropdown-item" href="./pages/congress_116_House.html">House</a>
+                    <a class="dropdown-item" href="./congress_116_Senate.html">Senate</a>
+                    <a class="dropdown-item" href="./congress_116_House.html">House</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendance</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./Pages/attendance_senate.html">Senate</a>
-                        <a class="dropdown-item" href="./pages/attendance_house.html">House</a>
+                        <a class="dropdown-item" href="./attendance_senate.html">Senate</a>
+                        <a class="dropdown-item" href="./attendance_house.html">House</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Party Loyalty</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./pages/party_loyalty_senate.html">Senate</a>
-                        <a class="dropdown-item" href="./pages/party_loyalty_house.html">House</a>
+                        <a class="dropdown-item" href="./party_loyalty_senate.html">Senate</a>
+                        <a class="dropdown-item" href="#">House<span class="sr-only">(current)</span></a>
                     </div>
                 </li>
               </ul>
         </div>
-</nav>
+    </nav>
+    <!------- below closing div with id="app-->
+    </div>
+<!-- Optional JavaScript --------------------------------------------------------------------------->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!--- script for vue.js---------------------------------------------------------------------->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <!----link to external .js file------------------------------------------------------------->
+    <script src="./js/app.js"></script>
+</body>

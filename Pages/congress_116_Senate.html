@@ -7,11 +7,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/stylesheet.css" type="text/css">
+    <!---- below the link to my style sheet-->
+    <link rel="stylesheet" href="../CSS/stylesheet.css" type="text/css">
   </head>
-  <!------start body with nav-->
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div id="app">
+      <!---------start nav bar----------------------------------------------------->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
         <img src="" alt="logo USA Open Government"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,27 +23,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Congress 116</a>
                             <div class="dropdown-menu">
-                            <a class="dropdown-item" href="congress_116_Senate.html">Senate</a>
-                            <a class="dropdown-item" href="congress_116_House.html">House</a>
+                            <a class="dropdown-item" href="#">Senate<span class="sr-only">(current)</span></a>
+                            <a class="dropdown-item" href="./congress_116_House.html">House</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendance</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="attendance_senate_attendance.html">Senate</a>
-                                <a class="dropdown-item" href="attendance_house_attendance.html">House</a>
+                                <a class="dropdown-item" href="./attendance_senate.html">Senate</a>
+                                <a class="dropdown-item" href="./attendance_house.html">House</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Party Loyalty</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="party_loyalty_senate.html">Senate</a>
-                                <a class="dropdown-item" href="party_loyalty_house.html">House</a>
+                                <a class="dropdown-item" href="./party_loyalty_senate.html">Senate</a>
+                                <a class="dropdown-item" href="./partly_loyalty_house.html">House</a>
                             </div>
                         </li>
                       </ul>
@@ -54,6 +56,7 @@
 
         <h1>Senators</h1>
         <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        <p> {{ response }} </p>
 
 <!---------
 Toon alle senatoren in een tabel. Kolommen: Senator, Party, State, Seniority, Party Votes
@@ -66,4 +69,19 @@ Ik kan boven de tabel zoeken op naam. Search-as-you-type. Als ik bijvoorbeeld de
 --------------------->
         </div>
     </div>
-</div>
+    </div>
+    <!------- below closing div with id="app-->
+    </div>
+    <!--- script for axios.js--------
+    <script src=“https://unpkg.com/axios/dist/axios.min.js”></script>---->
+    <!--- script for vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!----link to external .js file-->
+    <script src="../JS/app.js"></script>
+<!-- Optional JavaScript --------------------------------------------------------------------------->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+</body>
