@@ -13,7 +13,7 @@ axios.get(apiUrl)
   console.log(error);
 });*/
 
-new Vue({
+const app = new Vue({
   el: '#app',
 
   components:{
