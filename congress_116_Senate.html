@@ -78,17 +78,31 @@
             <div class="tab-content h-75">
             <div class="tab-pane h-100 p-3 active border border-primary" id="Democrats" role="tabpanel" aria-labelledby="Democrats-tab">
                 <table class="table table-hover">
-                    <!---- hoe sorteer ik op alfabetische naam, per staat en in volgorde van senoriteit?-->
+                    <!---- hoe sorteer ik op alfabetische naam, per staat en in volgorde van senoriteit?
+                    <tr v-repeat="users | filterBy search | orderBy sortKey reverse">
+        <td>{{ name }}</td>
+        <td>{{ age }}</td>
+      </tr>
+     <th v-repeat="column: columns">
+          <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+            {{ column | capitalize }}
+          </a>
+        </th>-->
                     <thead class="bg-secondary"> 
                             <tr>
+                                <th v-repeat="column: columns">
+                                    <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+                                      {{ column }}
+                                    </a>
+                                  <!--</th>
                                 <th>Name of Senator</th>
                                 <th>State</th>
                                 <th>Seniority</th>
-                                <th>Party Votes</th>
+                                <th>Party Votes</th>-->
                             </tr>
                     </thead>    
                     <tbody class="bg-primary text-white border-primary" v-for="member in info.data.results[0].members" v-if='member.party === "D"'>
-                        <tr>
+                        <tr v-repeat="members | filterBy search | orderBy sortKey reverse">
                                 <td>{{ member.first_name }} {{ member.last_name }} </td>
                                 <td>{{ member.state }}</td>
                                 <td>{{ member.seniority }}</td>
@@ -148,7 +162,7 @@
         <!---------
         Toon alle senatoren in een tabel. Kolommen: Senator, Party, State, Seniority, Party Votes//done
         Ik kan filteren op Party (Republican, Democrat, Independent, of een combinatie)//done!
-        Ik kan filteren op State (een specifieke staat of alle staten)
+        Ik kan filteren op State (een specifieke staat of alle staten)//started
         Ik kan elke kolom sorteren (A-Z en Z-A). 
         Ik kan op de naam van een senator klikken. Er kom dan op de site van die senator.
 
