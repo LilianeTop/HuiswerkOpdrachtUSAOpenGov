@@ -1,17 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
+  <header>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--- script for vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!--- script for axios.js-------->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!---- below the link to my style sheet-->
     <link rel="stylesheet" href="../CSS/stylesheet.css" type="text/css">
-  </head>
-  <body>
-    <div id="app">
+    
+</header>
+<body>
+ <div id="app">
       <!---------start nav bar----------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
@@ -49,39 +54,133 @@
                       </ul>
         </div>
       </nav>
+     <!---- end of nav bar------------------------>
+     
+        
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-
-        <h1>Senators</h1>
-        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-        <p> {{ response }} </p>
-
-<!---------
-Toon alle senatoren in een tabel. Kolommen: Senator, Party, State, Seniority, Party Votes
-Ik kan filteren op Party (Republican, Democrat, Independent, of een combinatie)
-Ik kan filteren op State (een specifieke staat of alle staten)
-Ik kan elke kolom sorteren (A-Z en Z-A). 
-Ik kan op de naam van een senator klikken. Er kom dan op de site van die senator.
-
-Ik kan boven de tabel zoeken op naam. Search-as-you-type. Als ik bijvoorbeeld de R invoer, dan zie ik senatoren met voornamen die met een R beginnen en met achternamen die met een R beginnen. Als ik Robert heb ingevoerd, dan zie ik senatoren met voornamen die met Robert beginnen en met achternamen die met Robert (dus ook Roberts) beginnen.
---------------------->
+        <div class="container h-100 py-2 ">
+            <h1>Senators</h1>
+        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p> 
+        <br />
+        
+        <!---- search function Search-as-you-type-->
+                <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link border border-primary border-bottom-0" id="Democrats-tab" data-toggle="tab" href="#Democrats" role="tab" aria-controls="Democrats" aria-selected="true">Democrats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border border-danger border-bottom-0" id="Republicans-tab" data-toggle="tab" href="#Republicans" role="tab" aria-controls="Republicans" aria-selected="false">Republicans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border border-success border-bottom-0" id="Independants-tab" data-toggle="tab" href="#Independants" role="tab" aria-controls="Independants" aria-selected="false">Independants</a>
+                    </li>
+                </ul>
+            <div class="tab-content h-75">
+            <div class="tab-pane h-100 p-3 active border border-primary" id="Democrats" role="tabpanel" aria-labelledby="Democrats-tab">
+                <table class="table table-hover">
+                    <!---- hoe sorteer ik op alfabetische naam, per staat en in volgorde van senoriteit?
+                    <tr v-repeat="users | filterBy search | orderBy sortKey reverse">
+        <td>{{ name }}</td>
+        <td>{{ age }}</td>
+      </tr>
+     <th v-repeat="column: columns">
+          <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+            {{ column | capitalize }}
+          </a>
+        </th>-->
+                    <thead class="bg-secondary"> 
+                            <tr>
+                                <th v-repeat="column: columns">
+                                    <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+                                      {{ column }}
+                                    </a>
+                                  <!--</th>
+                                <th>Name of Senator</th>
+                                <th>State</th>
+                                <th>Seniority</th>
+                                <th>Party Votes</th>-->
+                            </tr>
+                    </thead>    
+                    <tbody class="bg-primary text-white border-primary" v-for="member in info.data.results[0].members" v-if='member.party === "D"'>
+                        <tr v-repeat="members | filterBy search | orderBy sortKey reverse">
+                                <td>{{ member.first_name }} {{ member.last_name }} </td>
+                                <td>{{ member.state }}</td>
+                                <td>{{ member.seniority }}</td>
+                                <td>{{ member.total_votes }}</td>
+                        </tr>
+                    </tbody>
+                </table>  
+            </div>
+            <div class="tab-pane h-100 p-3 border border-danger" id="Republicans" role="tabpanel" aria-labelledby="Republicans-tab">
+            <table class="table table-hover">
+                <thead class="bg-secondary"> 
+                        <tr>
+                            <th>Name of Senator</th>
+                            <th>State</th>
+                            <th>Seniority</th>
+                            <th>Party Votes</th>
+                        </tr>
+                </thead>   
+                <tbody class="bg-danger  text-white" v-for="member in info.data.results[0].members" v-if='member.party === "R"'>
+                    <tr>
+                        <td>{{ member.first_name }} {{ member.last_name }} </td>
+                        <td>{{ member.state }}</td>
+                        <td>{{ member.seniority }}</td>
+                        <td>{{ member.total_votes }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="tab-pane h-100 p-3 border border-success" id="Independants" role="tabpanel" aria-labelledby="Independants-tab">
+            <table class="table table-hover">
+                <thead class="bg-secondary"> 
+                        <tr>
+                            <th>Name of Senator</th>
+                            <th>State</th>
+                            <th>Seniority</th>
+                            <th>Party Votes</th>
+                        </tr>
+                </thead>   
+                <tbody class="bg-success text-white" v-for="member in info.data.results[0].members" v-if='member.party === "ID"'>
+                    <tr>
+                        <td>{{ member.first_name }} {{ member.last_name }} </td>
+                        <td>{{member.state }}</td>
+                        <td>{{ member.seniority }}</td>
+                        <td>{{ member.total_votes }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
         </div>
-    </div>
-    </div>
-    <!------- below closing div with id="app-->
-    </div>
-    <!--- script for axios.js--------
-    <script src=“https://unpkg.com/axios/dist/axios.min.js”></script>---->
-    <!--- script for vue.js-->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     </div>
+
+        <!------- below closing div with id="app-->
+    </div> 
+        
+       
+
+        <!---------
+        Toon alle senatoren in een tabel. Kolommen: Senator, Party, State, Seniority, Party Votes//done
+        Ik kan filteren op Party (Republican, Democrat, Independent, of een combinatie)//done!
+        Ik kan filteren op State (een specifieke staat of alle staten)//started
+        Ik kan elke kolom sorteren (A-Z en Z-A). 
+        Ik kan op de naam van een senator klikken. Er kom dan op de site van die senator.
+
+        Ik kan boven de tabel zoeken op naam. Search-as-you-type. Als ik bijvoorbeeld de R invoer, dan zie ik senatoren met voornamen die met een R beginnen en met achternamen die met een R beginnen. Als ik Robert heb ingevoerd, dan zie ik senatoren met voornamen die met Robert beginnen en met achternamen die met Robert (dus ook Roberts) beginnen.
+        --------------------->
+                
+            
+     
+       
+    
+    
     <!----link to external .js file-->
-    <script src="../JS/app.js"></script>
-<!-- Optional JavaScript --------------------------------------------------------------------------->
+    <script type='text/javascript' src="../JS/app.js"></script>
+ <!-- Optional JavaScript --------------------------------------------------------------------------->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
    
 </body>
+</html>
