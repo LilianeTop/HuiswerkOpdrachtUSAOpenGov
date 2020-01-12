@@ -5,7 +5,16 @@ new Vue({
     
 	return {
     info: null,
+
     readMore: false,
+    
+    sortKey: 'Name of Senator',
+    reverse: false,
+
+    search: '',
+
+    columns: ['Name of Senator', 'State', 'Seniority','Party Votes'],
+    
 	}
   },
   mounted () {
@@ -17,6 +26,13 @@ new Vue({
 		})
       .then(response => (this.info = response))
   },
+  methods: {
+    sortBy: function(sortKey) {
+      this.reverse = (this.sortKey == sortKey) ? ! this.reverse : false;
+
+      this.sortKey = sortKey;
+    }
+  }
   
 })
 
