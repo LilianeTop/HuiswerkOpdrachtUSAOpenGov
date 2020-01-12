@@ -11,7 +11,7 @@ new Vue({
     sortKey: 'Name of Senator',
     reverse: false,
 
-    search: '',
+    //search: '',
 
     columns: ['Name of Senator', 'State', 'Seniority','Party Votes'],
     

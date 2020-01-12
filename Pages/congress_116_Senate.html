@@ -58,12 +58,12 @@
      
         
 
-        <div class="container h-100 py-2 ">
+     <div class="container h-100 py-2 ">
             <h1>Senators</h1>
-        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p> 
-        <br />
-        
-        <!---- search function Search-as-you-type-->
+            <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p> 
+            <br />
+            
+            <!---- search function Search-as-you-type-->
                 <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link border border-primary border-bottom-0" id="Democrats-tab" data-toggle="tab" href="#Democrats" role="tab" aria-controls="Democrats" aria-selected="true">Democrats</a>
@@ -80,21 +80,22 @@
                 <table class="table table-hover">
                     <!---- hoe sorteer ik op alfabetische naam, per staat en in volgorde van senoriteit?
                     <tr v-repeat="users | filterBy search | orderBy sortKey reverse">
-        <td>{{ name }}</td>
-        <td>{{ age }}</td>
-      </tr>
-     <th v-repeat="column: columns">
-          <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
-            {{ column | capitalize }}
-          </a>
-        </th>-->
+                <td>{{ name }}</td>
+                <td>{{ age }}</td>
+            </tr>
+            <th v-repeat="column: columns">
+                <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+                    {{ column | capitalize }}
+                </a>
+                </th>-->
                     <thead class="bg-secondary"> 
                             <tr>
                                 <th v-repeat="column: columns">
                                     <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
                                       {{ column }}
                                     </a>
-                                  <!--</th>
+                                </th>
+                                  <!--
                                 <th>Name of Senator</th>
                                 <th>State</th>
                                 <th>Seniority</th>
@@ -115,10 +116,11 @@
             <table class="table table-hover">
                 <thead class="bg-secondary"> 
                         <tr>
-                            <th>Name of Senator</th>
-                            <th>State</th>
-                            <th>Seniority</th>
-                            <th>Party Votes</th>
+                            <th v-repeat="column: columns">
+                                <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+                                  {{ column }}
+                                </a>
+                            </th>
                         </tr>
                 </thead>   
                 <tbody class="bg-danger  text-white" v-for="member in info.data.results[0].members" v-if='member.party === "R"'>
@@ -132,13 +134,14 @@
             </table>
             </div>
             <div class="tab-pane h-100 p-3 border border-success" id="Independants" role="tabpanel" aria-labelledby="Independants-tab">
-            <table class="table table-hover">
+                <table class="table table-hover">
                 <thead class="bg-secondary"> 
                         <tr>
-                            <th>Name of Senator</th>
-                            <th>State</th>
-                            <th>Seniority</th>
-                            <th>Party Votes</th>
+                            <th v-repeat="column: columns">
+                                <a href="#" v-on="click: sortBy(column)" v-class="active: sortKey == column">
+                                  {{ column }}
+                                </a>
+                            </th>
                         </tr>
                 </thead>   
                 <tbody class="bg-success text-white" v-for="member in info.data.results[0].members" v-if='member.party === "ID"'>
@@ -149,7 +152,7 @@
                         <td>{{ member.total_votes }}</td>
                     </tr>
                 </tbody>
-            </table>
+                </table>
             </div>
         </div>
      </div>
