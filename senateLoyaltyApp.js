@@ -53,7 +53,7 @@ new Vue({
     computed: {
         sortedLosers() {
                        
-            sortedInfoL = this.info.sort((a,b) => b.missed_votes_pct - a.missed_votes_pct) 
+            sortedInfoL = this.info.sort((a,b) => a.votes_with_party_pct - b.votes_with_party_pct) 
             leastVoted = sortedInfoL.slice(0, 10)
             
                 return leastVoted.sort((a, b) => {
@@ -66,7 +66,7 @@ new Vue({
             
         },
         sortedWinners() {
-            sortedInfoH = this.info.sort((a,b) => a.missed_votes_pct - b.missed_votes_pct)
+            sortedInfoH = this.info.sort((a,b) => b.votes_with_party_pct - a.votes_with_party_pct) 
             mostVoted = sortedInfoH.slice(0, 10)
             
                 return mostVoted.sort((a, b) => {

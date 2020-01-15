@@ -15,13 +15,13 @@ new Vue({
             currentMember: 'last_name',
             currentMemberDir: 'asc',
             currentMemberW: 'last_name',
-            currentMemberDirW: 'asc'
+            currentMemberDirW: 'desc'
 
         }
     },
     mounted() {
         axios
-            .get('https://api.propublica.org/congress/v1/116/senate/members.json', {
+            .get('https://api.propublica.org/congress/v1/116/house/members.json', {
                 headers: {
                     'X-API-Key': '5adoFTbZ7YXNQhwpoHFTzptavCFlqKYGfwSQlbO0'
                 }
@@ -39,7 +39,7 @@ new Vue({
 
                     (this.votedWithPartyR += member.votes_with_party_pct);
 
-                if (member.party === "ID")
+                if (member.party === "I")
                     this.independents.push(member) &&
 
                     (this.votedWithPartyI += member.votes_with_party_pct);
@@ -54,7 +54,7 @@ new Vue({
         sortedLosers() {
                        
             sortedInfoL = this.info.sort((a,b) => b.missed_votes_pct - a.missed_votes_pct) 
-            leastVoted = sortedInfoL.slice(0, 10)
+            leastVoted = sortedInfoL.slice(0, 44)
             
                 return leastVoted.sort((a, b) => {
                 let modifier = 1;
@@ -67,11 +67,11 @@ new Vue({
         },
         sortedWinners() {
             sortedInfoH = this.info.sort((a,b) => a.missed_votes_pct - b.missed_votes_pct)
-            mostVoted = sortedInfoH.slice(0, 10)
+            mostVoted = sortedInfoH.slice(0, 44)
             
                 return mostVoted.sort((a, b) => {
                 let modifier = 1;
-                if (this.currentMemberDirW === 'desc') modifier = -1;
+                if (this.currentMemberDirW === 'asc') modifier = -1;
                 if (a[this.currentMemberW] < b[this.currentMemberW]) return -1 * modifier;
                 if (a[this.currentMemberW] > b[this.currentMemberW]) return 1 * modifier;
                 return 0;

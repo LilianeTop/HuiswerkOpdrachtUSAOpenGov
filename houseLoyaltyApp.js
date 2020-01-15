@@ -5,9 +5,13 @@ new Vue({
         return {
             info: [],
             sortedInfo: [],
+            sortedInfoH: [],
+            sortedInfoL: [],
+
             democrats: [],
             republicans: [],
             independents: [],
+
             votedWithPartyD: 0,
             votedWithPartyR: 0,
             votedWithPartyI: 0,
@@ -21,7 +25,7 @@ new Vue({
     },
     mounted() {
         axios
-            .get('https://api.propublica.org/congress/v1/116/senate/members.json', {
+            .get('https://api.propublica.org/congress/v1/116/house/members.json', {
                 headers: {
                     'X-API-Key': '5adoFTbZ7YXNQhwpoHFTzptavCFlqKYGfwSQlbO0'
                 }
@@ -39,7 +43,7 @@ new Vue({
 
                     (this.votedWithPartyR += member.votes_with_party_pct);
 
-                if (member.party === "ID")
+                if (member.party === "I")
                     this.independents.push(member) &&
 
                     (this.votedWithPartyI += member.votes_with_party_pct);
@@ -51,10 +55,14 @@ new Vue({
             
     },
     computed: {
-        sortedLosers() {
+        
+        
+    },
+    methods: {
+        sortedLosers(member) {
                        
-            sortedInfoL = this.info.sort((a,b) => b.missed_votes_pct - a.missed_votes_pct) 
-            leastVoted = sortedInfoL.slice(0, 10)
+            sortedInfoL = this.info.sort((a,b) => a.votes_with_party_pct - b.votes_with_party_pct) 
+            leastVoted = sortedInfoL.slice(0, 44)
             
                 return leastVoted.sort((a, b) => {
                 let modifier = 1;
@@ -65,9 +73,9 @@ new Vue({
             })
             
         },
-        sortedWinners() {
-            sortedInfoH = this.info.sort((a,b) => a.missed_votes_pct - b.missed_votes_pct)
-            mostVoted = sortedInfoH.slice(0, 10)
+        sortedWinners(member) {
+            sortedInfoH = this.info.sort((a,b) => b.votes_with_party_pct - a.votes_with_party_pct) 
+            mostVoted = sortedInfoH.slice(0, 44)
             
                 return mostVoted.sort((a, b) => {
                 let modifier = 1;
@@ -76,22 +84,19 @@ new Vue({
                 if (a[this.currentMemberW] > b[this.currentMemberW]) return 1 * modifier;
                 return 0;
             })
-        }
+        },
         
-        
-    },
-    methods: {
         sort(s) {
             if (s === this.currentMember) {
                 this.currentMemberDir = this.currentMemberDir === 'acs' ? 'desc' : 'acs';
             }
             this.currentMember = s;
         },
-        sortW(s) {
-            if (s === this.currentMemberW) {
+        sortW(w) {
+            if (w === this.currentMemberW) {
                 this.currentMemberDirW = this.currentMemberDirW === 'acs' ? 'desc' : 'acs';
             }
-            this.currentMemberW = s;
+            this.currentMemberW = w;
          }
     }
 

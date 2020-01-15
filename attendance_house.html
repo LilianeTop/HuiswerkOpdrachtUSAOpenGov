@@ -11,18 +11,18 @@
     <!--- script for axios.js-------->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!---- below the link to my style sheet-->
     <link rel="stylesheet" href="../CSS/stylesheet.css" type="text/css">
-
 </head>
 
 <body>
     <div id="app">
-        <!---------start nav bar----------------------------------------------------->
+        <!------ navigation bar------------------------------------>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <img src="" alt="logo USA Open Government"></a>
@@ -47,8 +47,8 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">Attendance</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Senate<span class="sr-only">(current)</span></a>
-                            <a class="dropdown-item" href="./attendance_house.html">House</a>
+                            <a class="dropdown-item" href="./attendance_senate.html">Senate</a>
+                            <a class="dropdown-item" href="#">House<span class="sr-only">(current)</span></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -62,19 +62,18 @@
                 </ul>
             </div>
         </nav>
-        <!--- end of nav bar-->
+        <!-----------------End of navigation bar--------------------------->
         <div class="container h-100 py-2 ">
-            <h1>Senate - Attendance</h1>
-            <p> The Constitution specifies that a majority of members constitutes a quorum to do business in each house.
-                Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in
-                most cases, debates continue even if a majority is not present.The Senate uses roll-call votes; a clerk
-                calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is
-                announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435
+            <h1>House - Attendance </h1>
+            <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each
+                house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls;
+                thus, in most cases, debates continue even if a majority is not present.The Senate uses roll-call votes;
+                a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name
+                is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435
                 representatives takes quite some time; normally, members vote by electronic device. In the case of a
                 tie, the motion in question fails.In the Senate, the Vice President may (if present) cast the
                 tiebreaking vote.</p>
         </div>
-
         <!--- 1- TABLE WITH NUMBER OF REPRESENTATIVES PER PARTY AND VOTED WITH PARTY-->
         <div class="container h-100 py-2 ">
             <div class='row'>
@@ -109,7 +108,6 @@
                     </table>
                 </div>
             </div>
-
             <div class='row'>
                 <div class='col-6'>
                     <!--- 2- TABLE with Losers-->
@@ -120,7 +118,7 @@
                                 <th @click="sort('last_name')">Name of Senator</th>
                                 <th @click="sort('missed_votes')">Number of Missed Votes</th>
                                 <th @click="sort('missed_votes_pct')">Percentage of Missed Votes</th>
-                            </tr>
+                                </th>
                         </thead>
                         <tbody class="bg-secondary text-white">
                             <tr v-for="member in sortedLosers">
@@ -138,7 +136,6 @@
                 <!-- <div class='col-6'>
                     <table class="table table-hover ">
                         <thead>
-                            <h3>Representatives with Most Attendance</h3>
                             <tr>
                                 <th @click="sortW('last_name')">Name of Senator</th>
                                 <th @click="sortW('missed_votes')">Number of Missed Votes</th>
@@ -147,23 +144,19 @@
                         </thead>
                         <tbody class="bg-secondary text-white">
                             <tr v-for="member in sortedWinners">
-                            <td class="alignLeft"><a v-bind:href="member.url">{{ member.first_name }}
+                                <td class="alignLeft"><a v-bind:href="member.url">{{ member.first_name }}
                                         {{ member.last_name }}</a></td>
                                 <td>{{ member.missed_votes }}</td>
                                 <td>{{ Math.floor(member.missed_votes_pct) }}%</td>
 
                             </tr>
                         </tbody>
-                    </table> -->
+                    </table>
                     <div>
                     </div>
-                </div>
+                </div> -->
 
-
-                <!-- Drie tabellen:
-    1.Senate at a glance Per partij van het Senaat en in totaal het aantal representatives en het % voted with Party/ done!
-    2.Least Engaged (Bottom 10% Attendance)*10% van alle Senate representatives die het hoogste percentage missed votes ten op zichte van total votes hebben. Geef de namen, het aantal missed votes en het percentage weer. Sorteren op elk van de drie kolommen moet mogelijk zijn. Namen moeten moeten wederom clickable zijn.
-    3.Most Engaged (Top 10% Attendance)*Idem, maar nu met laagste percentage missed votes.* ranking based on % -->
+                <!-- Drie tabellen:1.House at a glancePer partij van het Huis en in totaal het aantal representatives en het % voted with Party2.Least Engaged (Bottom 10% Attendance)*10% van alle House representatives die het hoogste percentage missed votes ten op zichte van total votes hebben. Geef de namen, het aantal missed votes en het percentage weer. Sorteren op elk van de drie kolommen moet mogelijk zijn. Namen moeten moeten wederom clickable zijn.3.Most Engaged (Top 10% Attendance)*Idem, maar nu met laagste percentage missed votes.* ranking based on % -->
 
                 <!------- below closing div with id="app-->
             </div>
@@ -182,6 +175,7 @@
                 crossorigin="anonymous">
             </script>
 
-            <!----link to external .js file------------------------------------>
-            <script src="../JS/attendanceSenateApp.js"></script>
+
+            <!----link to external .js file----------------------------------------------->
+            <script src="../JS/attendanceHouseApp.js"></script>
 </body>
